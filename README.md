@@ -1,1 +1,45 @@
-# data_analytics_portfolio_TS
+# 📊 Global Air Quality Framework & Relational Data Integrity
+
+## 📋 Project Overview
+This data analytics project leverages **Google BigQuery** and **SQL** to programmatically interface with large-scale, multi-variable open-source datasets managed by OpenAQ. The primary objective is to engineer high-efficiency relational data queries, isolate standardized units of measurement across international borders, and establish data integrity frameworks for baseline environmental monitoring.
+
+By bypassing local computing restrictions and utilizing cloud-based schemas, this project demonstrates an analytical approach to structuring raw cloud databases into clean, report-ready corporate datasets.
+
+---
+
+## 🛠️ Technical Toolkit & Methodologies
+* **Language & Interface:** SQL (Google BigQuery dialect) paired with Python integration.
+* **Environment Architecture:** Specialized cloud Client schemas via `google.cloud.bigquery`.
+* **Data Processing Libraries:** Pandas (for DataFrame transformations and structured table rendering).
+* **Core Competencies:** Relational database structures, field filtration (`WHERE`), data deduplication (`DISTINCT`), and schema evaluation.
+
+---
+
+## 🔬 Analytical Project Phases
+
+### 🌐 Phase 1: Isolating International Reporting Metrics
+* **Objective:** Map international reporting compliance by isolating target measurement categories across disparate reporting networks.
+* **SQL Implementation:** 
+  ```sql
+  SELECT DISTINCT country
+  FROM `bigquery-public-data.openaq.global_air_quality`
+  WHERE unit = 'ppm'
+  ```
+* **Business Insight:** Identified structural anomalies across international reporting borders, uncovering exactly which tracking networks require specific metric standardization strategies to maintain global reporting consistency.
+
+### 🎯 Phase 2: Establishing Baseline Clean-Air Controls
+* **Objective:** Filter massive multi-variable data tables to identify absolute control points (`value = 0`) across global reporting stations.
+* **SQL Implementation:**
+  ```sql
+  SELECT *
+  FROM `bigquery-public-data.openaq.global_air_quality`
+  WHERE value = 0
+  ```
+* **Business Insight:** Developed a functional dataset subset to establish clean baseline control zones, allowing organizations to dynamically measure environmental variance over time against verified clean-air thresholds.
+
+---
+
+## 💡 Key Strategic Takeaways
+1. **Relational Scalability:** Demonstrated the ability to manage end-to-end data integrity pipelines on live, population-scale databases by deploying query-safety safety constraints (`maximum_bytes_billed`).
+2. **Data Normalization:** Highlighted the absolute necessity of structuring disparate reporting boundaries (such as managing discrepancies between metric units) before executing high-level corporate insights or modeling.
+3. **Automated Insights:** Built a foundational architecture that transforms raw, unorganized cloud rows into concise tabular frameworks ready for executive-level presentations or further behavioral analysis.
