@@ -1,3 +1,15 @@
+  # 📊 Workforce Analytics & SQL Optimization Sandbox
+
+### **Project Scope**
+Engineered a relational SQLite schema to transition multi-variable employee survey profiles out of flat data matrices and optimize data hygiene pipelines.
+
+### **Technical Focus**
+Executed advanced data extraction models utilizing multi-table JOIN statements, Common Table Expressions (CTEs), and aggregate metrics.
+
+### **Business Outcome**
+Isolated targeted burnout and satisfaction metrics to deliver actionable corporate insights for workforce retention strategies.
+
+---
 # 📊 Global Air Quality Framework & Relational Data Integrity
 
 ## 📋 Project Overview
@@ -45,19 +57,6 @@ By bypassing local computing restrictions and utilizing cloud-based schemas, thi
 3. **Automated Insights:** Built a foundational architecture that transforms raw, unorganized cloud rows into concise tabular frameworks ready for executive-level presentations or further behavioral analysis.
 
    ---
-  # 📊 Workforce Analytics & SQL Optimization Sandbox
-
-### **Project Scope**
-Engineered a relational SQLite schema to transition multi-variable employee survey profiles out of flat data matrices and optimize data hygiene pipelines.
-
-### **Technical Focus**
-Executed advanced data extraction models utilizing multi-table JOIN statements, Common Table Expressions (CTEs), and aggregate metrics.
-
-### **Business Outcome**
-Isolated targeted burnout and satisfaction metrics to deliver actionable corporate insights for workforce retention strategies.
-
-
----
 # Google BigQuery Data Wrangling: Hacker News Analytics
 
 This repository demonstrates production-level relational data aggregation techniques utilizing the **Google Cloud BigQuery API** within a Python-managed data pipeline. The engineering focus highlights scalable performance optimization across billions of data streams using `GROUP BY`, `HAVING`, and structural boolean filtering logic.
