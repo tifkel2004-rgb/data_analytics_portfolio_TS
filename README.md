@@ -45,10 +45,17 @@ By bypassing local computing restrictions and utilizing cloud-based schemas, thi
 3. **Automated Insights:** Built a foundational architecture that transforms raw, unorganized cloud rows into concise tabular frameworks ready for executive-level presentations or further behavioral analysis.
 
    ---
-   ### 📊 [Workforce Analytics & SQL Optimization Sandbox](./Workforce-Analytics.md)
-* **Project Scope:** Engineered a relational SQLite schema to transition multi-variable employee survey profiles out of flat data matrices and optimize data hygiene pipelines.
-* **Technical Focus:** Executed advanced data extraction models utilizing multi-table JOIN statements, Common Table Expressions (CTEs), and aggregate metrics.
-* **Business Outcome:** Isolated targeted burnout and satisfaction metrics to deliver actionable corporate insights for workforce retention strategies.
+  # 📊 Workforce Analytics & SQL Optimization Sandbox
+
+### **Project Scope**
+Engineered a relational SQLite schema to transition multi-variable employee survey profiles out of flat data matrices and optimize data hygiene pipelines.
+
+### **Technical Focus**
+Executed advanced data extraction models utilizing multi-table JOIN statements, Common Table Expressions (CTEs), and aggregate metrics.
+
+### **Business Outcome**
+Isolated targeted burnout and satisfaction metrics to deliver actionable corporate insights for workforce retention strategies.
+
 
 ---
 # Google BigQuery Data Wrangling: Hacker News Analytics
