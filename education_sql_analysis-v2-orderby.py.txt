@@ -1,0 +1,185 @@
+"""
+===============================================================================
+World Bank International Education Data Analysis (Google BigQuery)
+===============================================================================
+
+Author: Data Analytics Portfolio
+Dataset: `bigquery-public-data.world_bank_intl_education.international_education`
+
+-------------------------------------------------------------------------------
+1. PROJECT OVERVIEW & GOALS
+-------------------------------------------------------------------------------
+This project analyzes global education expenditure and indicator metrics using
+Google BigQuery's public World Bank International Education dataset.
+
+Key Objectives:
+1. Identify countries allocating the highest proportion of their GDP to government 
+   education expenditure between 2010 and 2017.
+2. Filter and extract high-frequency education indicator codes reported across 
+   at least 175 countries/entities in the year 2016.
+
+-------------------------------------------------------------------------------
+2. KAGGLE NOTEBOOK REFACTORING & BUG FIXES
+-------------------------------------------------------------------------------
+This script refactors an exploratory Kaggle course notebook into a clean, 
+standalone, publication-ready Python script for GitHub portfolio inclusion.
+
+Key Refactoring Steps & Fixes:
+- Removed Kaggle Dependencies: Stripped `learntools.core` feedback bindings and 
+  `q_1.check()` / `q_2.check()` execution checks.
+- Resolved NameError: Fixed unassigned `code_count_query` variables from original notebook cells.
+- Corrected Invalid SQL Syntax (Exercise 2):
+  - Original Broken SQL: 
+    SELECT indicator_code AND indicator_name WHERE COUNT (>=175) GROUP BY indicator_name, num_rows
+  - Corrected SQL:
+    SELECT indicator_code, indicator_name, COUNT(1) AS num_rows
+    FROM `bigquery-public-data.world_bank_intl_education.international_education`
+    WHERE year = 2016
+    GROUP BY indicator_code, indicator_name
+    HAVING COUNT(1) >= 175
+    ORDER BY num_rows DESC
+- Added Quota Protection: Implemented `QueryJobConfig(maximum_bytes_billed=10**10)` 
+  (10 GB limit) to prevent unintended query billing against BigQuery quotas.
+- Modularized Code: Wrapped operations into documented, reusable Python functions.
+
+-------------------------------------------------------------------------------
+3. PREREQUISITES & SETUP
+-------------------------------------------------------------------------------
+To run this script locally:
+
+1. Install required packages:
+   $ pip install google-cloud-bigquery pandas db-dtypes
+
+2. Authenticate with Google Cloud / BigQuery:
+   $ gcloud auth application-default login
+
+-------------------------------------------------------------------------------
+4. CODE IMPLEMENTATION
+-------------------------------------------------------------------------------
+"""
+
+import sys
+from google.cloud import bigquery
+import pandas as pd
+
+
+def get_bigquery_client() -> bigquery.Client:
+    """Initialize and return a BigQuery Client instance."""
+    return bigquery.Client()
+
+
+def preview_table(client: bigquery.Client, max_results: int = 5) -> pd.DataFrame:
+    """
+    Fetch and return a preview of the international_education table.
+    
+    Parameters:
+        client (bigquery.Client): Initialized BigQuery client.
+        max_results (int): Number of sample rows to retrieve.
+        
+    Returns:
+        pd.DataFrame: Preview rows from the table.
+    """
+    dataset_ref = client.dataset("world_bank_intl_education", project="bigquery-public-data")
+    table_ref = dataset_ref.table("international_education")
+    table = client.get_table(table_ref)
+    return client.list_rows(table, max_results=max_results).to_dataframe()
+
+
+def get_top_education_spending_countries(client: bigquery.Client) -> pd.DataFrame:
+    """
+    Exercise 1: Government Expenditure on Education (% of GDP)
+    
+    Queries countries with the highest average education spending as a percentage 
+    of GDP between 2010 and 2017 (indicator: 'SE.XPD.TOTL.GD.ZS').
+    
+    Returns:
+        pd.DataFrame: Country names and average spending percentages ordered DESC.
+    """
+    query = """
+        SELECT 
+            country_name, 
+            AVG(value) AS avg_ed_spending_pct
+        FROM 
+            `bigquery-public-data.world_bank_intl_education.international_education`
+        WHERE 
+            indicator_code = 'SE.XPD.TOTL.GD.ZS'
+            AND year >= 2010 
+            AND year <= 2017
+        GROUP BY 
+            country_name
+        ORDER BY 
+            avg_ed_spending_pct DESC
+    """
+    # Safeguard query execution against high data billing (10 GB max limit)
+    safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+    query_job = client.query(query, job_config=safe_config)
+    return query_job.to_dataframe()
+
+
+def get_frequent_indicator_codes(
+    client: bigquery.Client, min_rows: int = 175, target_year: int = 2016
+) -> pd.DataFrame:
+    """
+    Exercise 2: High-Frequency Education Indicator Codes
+    
+    Queries indicator codes and names reported across at least `min_rows` 
+    entries for a specific `target_year`.
+    
+    Parameters:
+        client (bigquery.Client): Initialized BigQuery client.
+        min_rows (int): Minimum row count threshold (default: 175).
+        target_year (int): Target observation year (default: 2016).
+        
+    Returns:
+        pd.DataFrame: Indicator codes, names, and row counts ordered DESC.
+    """
+    query = f"""
+        SELECT 
+            indicator_code, 
+            indicator_name, 
+            COUNT(1) AS num_rows
+        FROM 
+            `bigquery-public-data.world_bank_intl_education.international_education`
+        WHERE 
+            year = {target_year}
+        GROUP BY 
+            indicator_code, 
+            indicator_name
+        HAVING 
+            COUNT(1) >= {min_rows}
+        ORDER BY 
+            num_rows DESC
+    """
+    safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+    query_job = client.query(query, job_config=safe_config)
+    return query_job.to_dataframe()
+
+
+def main():
+    """Main execution pipeline."""
+    print("=" * 70)
+    print("World Bank International Education Data Analysis")
+    print("=" * 70)
+
+    print("\n[1/3] Initializing BigQuery Client & Fetching Table Preview...")
+    try:
+        client = get_bigquery_client()
+        preview_df = preview_table(client, max_results=5)
+        print(preview_df.to_string())
+    except Exception as e:
+        print(f"Note: BigQuery authentication required to run queries live. ({e})")
+        return
+
+    print("\n[2/3] Querying Top Countries by Education Spending (% of GDP, 2010-2017)...")
+    spending_df = get_top_education_spending_countries(client)
+    print(spending_df.head(10).to_string())
+
+    print("\n[3/3] Querying High-Frequency Indicator Codes (>= 175 rows in 2016)...")
+    code_count_df = get_frequent_indicator_codes(client, min_rows=175, target_year=2016)
+    print(code_count_df.head(10).to_string())
+
+    print("\nAnalysis Execution Complete.")
+
+
+if __name__ == "__main__":
+    main()
