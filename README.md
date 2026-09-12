@@ -169,58 +169,7 @@ WHERE deleted = True;
 ---
 *Note: This data module reflects structural solutions verified by automated evaluation layers in live analytics testing parameters.*
 
----
-"""
-World Bank International Education Data Analysis using Google BigQuery.
 
-This script queries the BigQuery public dataset 'world_bank_intl_education'
-to analyze government expenditure on education and identify key indicator metrics.
-"""
-
-from google.cloud import bigquery
-import pandas as pd
-
-
-def get_bigquery_client() -> bigquery.Client:
-    """Initialize and return a BigQuery Client instance."""
-    return bigquery.Client()
-
-
-def preview_table(client: bigquery.Client, max_results: int = 5) -> pd.DataFrame:
-    """Fetch and return a preview of the international_education table."""
-    dataset_ref = client.dataset("world_bank_intl_education", project="bigquery-public-data")
-    table_ref = dataset_ref.table("international_education")
-    table = client.get_table(table_ref)
-    return client.list_rows(table, max_results=max_results).to_dataframe()
-
-
-def get_top_education_spending_countries(client: bigquery.Client) -> pd.DataFrame:
-    """
-    Query countries spending the largest fraction of GDP on education between 2010 and 2017.
-    Indicator code: 'SE.XPD.TOTL.GD.ZS' (Government expenditure on education as % of GDP).
-    """
-    query = """
-        SELECT 
-            country_name, 
-            AVG(value) AS avg_ed_spending_pct
-        FROM 
-            `bigquery-public-data.world_bank_intl_education.international_education`
-        WHERE 
-            indicator_code = 'SE.XPD.TOTL.GD.ZS'
-            AND year >= 2010 
-            AND year <= 2017
-        GROUP BY 
-            country_name
-        ORDER BY 
-            avg_ed_spending_pct DESC
-    """
-    # Cancel query if it exceeds 10 GB to safeguard quota
-    safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
-    query_job = client.query(query, job_config=safe_config)
-    return query_job.to_dataframe()
-
-
-def get_frequent_indicator_codes(
     client: bigquery.Client, min_rows: int = 175, target_year: int = 2016
 ) -> pd.DataFrame:
     """
