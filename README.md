@@ -170,7 +170,7 @@ WHERE deleted = True;
 *Note: This data module reflects structural solutions verified by automated evaluation layers in live analytics testing parameters.
 
 ---
-### 🎓 World Bank International Education Analytics & Cloud SQL Optimization
+# 🎓 World Bank International Education Analytics & Cloud SQL Optimization
 
 #### 📋 Project Architecture Overview
 This data analytics project leverages **Google BigQuery** and **SQL** within a Python-managed data pipeline to query, transform, and evaluate global education metrics from the World Bank International Education public dataset. By interfacing directly with enterprise cloud database schemas, this project establishes standardized data extraction frameworks to track global government educational expenditure and isolate high-density reporting indicators across international borders.
