@@ -1,2 +1,3 @@
-git revert HEAD
-git push origin <branch-name>
+git revert HEAD --no-edit
+git push origin main
+
