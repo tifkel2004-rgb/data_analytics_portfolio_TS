@@ -1,7 +1,11 @@
 # 🛠️ Relational Database Logic & Data Validation Sandbox
 
 ### Project Overview
-Welcome to my primary data analytics repository. This workspace serves as a practical sandbox where I apply rigorous statistical methodologies to core database management tasks. Moving beyond flat spreadsheets, these projects focus on building structured relational tables, ensuring strict data hygiene, and optimizing queries to track operational performance and compliance.
+Welcome to my primary data analytics repository. This workspace serves as a practical sandbox where I apply rigorous statistical methodologies to core database management tasks. Moving beyond flat spreadsheets, these projects focus on building structured relational tables, ensuring strict data hygiene, and optimizing queries to track operational performance and compliance. 
+
+### 💼 HRIS & Core Database Integrity Application
+While developed in a sandbox environment, the scripting loops and relational structures engineered in this repository directly mirror the data validation, quality auditing, and schema mapping rules required to maintain enterprise Human Capital Management (HCM) databases. The focus is strictly on data hygiene—ensuring that multi-table datasets (such as matching employee profiles to structural payroll files) link cleanly without causing system anomalies, entry redundancies, or record duplication.
+
 
 ### Core Core Capabilities Demonstrated
 * **Relational Database Design (3NF):** Practiced translating flat, messy behavioral and demographic datasets into organized, multi-table relational structures adhering to Third Normal Form (3NF) to completely eliminate data duplication and entry friction.
