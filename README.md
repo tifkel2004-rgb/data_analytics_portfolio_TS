@@ -3,8 +3,8 @@
 ### Project Overview
 Welcome to my primary data analytics repository. This workspace serves as a practical sandbox where I apply rigorous statistical methodologies to core database management tasks. Moving beyond flat spreadsheets, these projects focus on building structured relational tables, ensuring strict data hygiene, and optimizing queries to track operational performance and compliance. 
 
-### 💼 HRIS & Core Database Integrity Application
-While developed in a sandbox environment, the scripting loops and relational structures engineered in this repository directly mirror the data validation, quality auditing, and schema mapping rules required to maintain enterprise Human Capital Management (HCM) databases. The focus is strictly on data hygiene—ensuring that multi-table datasets (such as matching employee profiles to structural payroll files) link cleanly without causing system anomalies, entry redundancies, or record duplication.
+### 💼 How This Applies to HRIS & Database Operations
+While this project runs in a sandbox environment, the data validation logic and schema mapping rules used here are the exact mechanics needed to manage enterprise HR databases. My main focus here is data hygiene. I built these scripts to ensure that multi-table datasets—like matching a list of employee profiles to their separate payroll files—link up cleanly without creating duplicate records or system errors.
 
 
 ### Core Core Capabilities Demonstrated
