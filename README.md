@@ -17,3 +17,33 @@ While this project runs in a sandbox environment, the data validation logic and 
 * **Languages:** SQL, Python
 * **Environments & Libraries:** SQLite, Jupyter Notebooks, Pandas, NumPy
 * **Methodologies:** Data Quality Auditing, Schema Mapping, Quantitative Analysis
+
+* # Corporate Workforce Insights & Cohort Attrition Dashboard
+### Platform Track: Tableau Cloud Architecture (Cross-Platform Power BI / DAX Framework Transferable)
+
+## 🎯 Executive Project Overview
+This business intelligence project houses the end-to-end data transformation pipeline and interactive visualization architecture engineered to track employee lifecycle trends, identify attrition risks, and isolate targeted burnout thresholds. The live dashboard maps and normalizes a multi-variable corporate dataset containing **1,470 records**, completely eliminating reporting friction for executive leadership and HR Operations partners.
+
+## 🛠️ Unified Analytics Stack & Logic
+* **Data Layer:** Relational SQL schema design (SQLite / Google BigQuery pipelines) with normalized structures adhering to Third Normal Form (3NF) to ensure absolute data hygiene.
+* **Visualization Engine:** Tableau Cloud (Interactive parameters, calculated fields, Level of Detail (LOD) expressions, and conditional color-coded logic pipelines).
+* **Cross-Platform Compatibility Architecture:** System logic mapped to mirror data-join topologies used in Microsoft Power BI environments (Power Query data modeling, star-schema table relationships, and calculated measure structures).
+
+## 📊 Core Business Metrics Rendered
+1. **Targeted Burnout Threshold Tracker:** An operational matrix filtering multi-tiered behavioral survey indicators against role tenure to signal active retention risks before separation occurs.
+2. **Cohort Retention Risk Matrix:** Demographic segmentation matrices providing predictive visibility into multi-member operational units and cross-functional team turnover patterns.
+3. **Data Quality Governance Log:** An internal audit dashboard mapping foreign/primary key relationships and eliminating null-value entries across incoming flat files.
+
+## 🔀 Functional Architecture: Tableau to Power BI DAX Mapping
+To ensure enterprise scaling and cross-platform flexibility, the core analytical logic engineered into this project’s interactive parameters is built on universal schema principles. The data modeling formulas mirror standard Power BI configurations:
+
+* **Tableau Calculation (User Retention Risk Status):**
+  `IF [Burnout Index] > 0.75 AND [Tenure Months] < 12 THEN "High Alert" ELSE "Stable" END`
+* **Power BI DAX Equivalent Measure:**
+  `Retention_Status = IF(SELECTEDVALUE('WorkforceData'[Burnout Index]) > 0.75 && SELECTEDVALUE('WorkforceData'[Tenure Months]) < 12, "High Alert", "Stable")`
+
+---
+### 🔗 Technical Repositories & Execution Files
+* View Active Relational Queries: `https://github.com/tifkel2004-rgb/data_analytics_portfolio_TS`
+* Access Interactive Tableau Workbook: `https://github.com/users/tifkel2004-rgb/projects/1/views/2`
+
