@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_workforce__employees
+    description: "Staging table for raw workforce logs with standardized data types."
+    columns:
+      - name: employee_id
+        description: "The primary key for each unique employee."
+        tests:
+          - unique
+          - not_null
