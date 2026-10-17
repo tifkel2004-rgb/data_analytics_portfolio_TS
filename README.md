@@ -47,3 +47,13 @@ To ensure enterprise scaling and cross-platform flexibility, the core analytical
 * View Active Relational Queries: `https://github.com/tifkel2004-rgb/data_analytics_portfolio_TS`
 * Access Interactive Tableau Workbook: `https://github.com/users/tifkel2004-rgb/projects/1/views/2`
 
+* ## ⚙️ Automated Analytics Engineering Stack (dbt Core & Google BigQuery)
+
+To demonstrate full-lifecycle data pipeline governance, this repository contains a production-ready **dbt Core** configuration designed to automate workforce metrics inside **Google BigQuery**.
+
+### 🏗 Architecture & Core Layers:
+*   **Staging Layer (`/models/staging/stg_workforce__employees.sql`):** Ingests raw data logs, handles null values via `coalesce`, and standardizes relational fields (IDs, compensation variables, operational scores) using explicit type casting.
+*   **Data Governance & Quality Suite (`/models/staging/schema.yml`):** Implements automated testing constraints directly into the deployment workflow, asserting that `employee_id` fields maintain strict `unique` and `not_null` operational integrity.
+*   **Marts Analytics Layer (`/models/marts/fct_workforce_attrition.sql`):** Implements modular SQL logic to flag systemic organizational risk, categorizing employees into discrete `burnout_risk_tier` and `compensation_band` buckets optimized for downstream executive reporting in Tableau Cloud.
+
+
